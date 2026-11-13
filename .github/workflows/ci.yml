@@ -18,7 +18,8 @@ jobs:
           fetch-depth: 0
 
       - name: Check every policy file is valid JSON
-        run: for f in policies/*.json; do jq empty "$f" && echo "valid JSON: $f"; done
+        run: |
+          for f in policies/*.json; do jq empty "$f" && echo "valid JSON: $f"; done
 
       - name: Check no access keys or console passwords are created in code
         run: |
