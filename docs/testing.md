@@ -47,6 +47,10 @@ Account evidence from the same run: root MFA enabled, password policy 14 charact
 
 The full transcript, with account IDs redacted by the script, is [`evidence/live-run-2026-11-13.txt`](evidence/live-run-2026-11-13.txt).
 
+## Teardown (13 November 2026, 21:52 WAT)
+
+After the console screenshots were taken, `terraform destroy` removed all 13 resources. Checked straight afterwards: the group, user, role, the three `davine-wk1-*` policies and the password policy no longer exist; root MFA is still enabled; the account's two existing budgets are untouched. The account is back in exactly the state it was in before the run.
+
 ## Running the checks yourself
 
 ```bash

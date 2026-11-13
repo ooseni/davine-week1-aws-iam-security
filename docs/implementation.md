@@ -2,7 +2,7 @@
 
 ## Summary
 
-I secured an AWS account for a new developer: root MFA confirmed, a CIS-strength password policy, a Developers group with two customer managed policies, one IAM user in that group with no access keys, and an IAM role for EC2 that reads one S3 bucket and lets Systems Manager manage the instance. All of it is Terraform (13 resources), applied on 13 November 2026 through an IAM Identity Center session, checked with 19 policy simulations and IAM Access Analyzer, and captured in redacted screenshots.
+I secured an AWS account for a new developer: root MFA confirmed, a CIS-strength password policy, a Developers group with two customer managed policies, one IAM user in that group with no access keys, and an IAM role for EC2 that reads one S3 bucket and lets Systems Manager manage the instance. All of it is Terraform (13 resources), applied on 13 November 2026 through an IAM Identity Center session, checked with 19 policy simulations and IAM Access Analyzer, captured in redacted screenshots, and destroyed at 21:52 the same evening.
 
 ## Before you start
 
