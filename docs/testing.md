@@ -4,7 +4,7 @@ Two layers: checks that run on every push with no AWS account, and a live run ag
 
 ## On every push (GitHub Actions, no AWS credentials)
 
-| Check | Tool and version | Result on 13 November 2026 |
+| Check | Tool and version | Result in [GitHub Actions run 43507509476](https://github.com/ooseni/davine-week1-aws-iam-security/actions/runs/43507509476), 13 November 2026 |
 |---|---|---|
 | Policy files are valid JSON | `jq` | 4 of 4 valid |
 | No access keys or console passwords in code | `grep` guard | none found |

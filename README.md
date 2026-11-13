@@ -4,6 +4,8 @@
 
 **Exercise date:** week of 10 August 2026 | **Type:** Davine Technologies Internship Project, AWS Cloud internship week 1 lab | **Status:** rebuilt as tested Terraform; applied, verified and destroyed on 13 November 2026
 
+[![CI](https://github.com/ooseni/davine-week1-aws-iam-security/actions/workflows/ci.yml/badge.svg)](https://github.com/ooseni/davine-week1-aws-iam-security/actions/workflows/ci.yml)
+
 > **Evaluation project.** A learning task completed for the Davine Technologies internship programme, rebuilt for this repository in my own AWS account. The lab user and role exist only for the length of a test run. It is not a production setup and contains no company data.
 
 **At a glance**
@@ -97,6 +99,7 @@ Also: [Console Home](screenshots/01-console-home.png) and [the budgets list](scr
 1. **A test claimed more than it checked.** I first named a test "joins the group and gets no keys", but nothing in it looked at keys. I renamed it, and the no-keys guarantee is now checked for real: a CI guard fails the build if `aws_iam_access_key` or a login profile appears in the code, and the live run confirms 0 access keys.
 2. **A scanner ignore did nothing.** My first Trivy ignore comment had a line of explanation between it and the resource, so Trivy never applied it. It must sit directly above the block; the explanation now comes first.
 3. **The AI's first draft had two wrong examples.** Amazon Chime, now discontinued, appeared as a SaaS example, and Lambda as PaaS. Checking against AWS caught both; see [the verification log](docs/ai-verification-log.md).
+4. **The first CI run never started.** A one-line `run:` command contained an unquoted `: `, which YAML reads as the start of a key, so GitHub rejected the workflow file and no job ran. My local rehearsal had run every step's command but never parsed the file itself. The step is now a block scalar, actionlint reports no issues, and [the next run](https://github.com/ooseni/davine-week1-aws-iam-security/actions/runs/43507509476) passed all 8 steps.
 
 ## Traps I avoided
 
