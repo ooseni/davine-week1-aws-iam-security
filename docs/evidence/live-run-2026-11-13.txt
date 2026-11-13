@@ -1,0 +1,40 @@
+# Live verification run, 13 November 2026, 20:55 WAT (UTC+1)
+# Command: AWS_PROFILE=<sso-profile> scripts/verify_live.sh   (after terraform apply: 13 resources)
+# Account IDs are redacted by the script itself.
+
+== Policy simulation: developer davine-wk1-developer-01
+  PASS  describe EC2 instances, signed in with MFA                 allowed
+  PASS  describe EC2 instances, no MFA                             explicitDeny
+  PASS  read a project bucket object, with MFA                     allowed
+  PASS  read a project bucket object, no MFA                       explicitDeny
+  PASS  read an object outside the project buckets, with MFA       implicitDeny
+  PASS  stop an instance tagged Team=developers, with MFA          allowed
+  PASS  stop an instance tagged Team=finance, with MFA             implicitDeny
+  PASS  terminate an instance, with MFA                            implicitDeny
+  PASS  create an IAM user, with MFA                               implicitDeny
+  PASS  attach AdministratorAccess to itself, with MFA             implicitDeny
+  PASS  change own password before MFA (first sign-in)             allowed
+  PASS  register own MFA device before MFA                         allowed
+  PASS  remove own MFA device, no MFA                              explicitDeny
+  PASS  change another user's password, with MFA                   implicitDeny
+== Policy simulation: EC2 application role davine-wk1-ec2-app
+  PASS  read the app config object                                 allowed
+  PASS  overwrite the app config object                            implicitDeny
+  PASS  read another project bucket                                implicitDeny
+  PASS  register with Systems Manager (SSM core policy)            allowed
+  PASS  create an IAM user                                         implicitDeny
+== IAM Access Analyzer policy validation
+  PASS  developer-access.json                                      0 findings
+  PASS  ec2-app-config-read.json                                   0 findings
+  PASS  ec2-trust.json                                             0 findings
+  PASS  require-mfa.json                                           0 findings
+== Account evidence
+  root user MFA enabled (AccountMFAEnabled): 1
+  password policy: min length 14, reuse prevention 24
+  davine-wk1-developer-01 groups: davine-wk1-developers
+  davine-wk1-developer-01 access keys: 0
+  davine-wk1-developers policies: davine-wk1-require-mfa	davine-wk1-developer-access
+  davine-wk1-ec2-app trusted by: ec2.amazonaws.com
+  davine-wk1-ec2-app policies: AmazonSSMManagedInstanceCore	davine-wk1-ec2-app-config-read
+  budgets in the account: 2
+== Result: 23 passed, 0 failed
